@@ -1,6 +1,6 @@
 import { AuthContext } from "../context/authContext";
 import "./Auth.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 
 const AuthPage = () => {
   // two way binding: manage state and bind the values of input to that state and listen to
@@ -16,7 +16,7 @@ const AuthPage = () => {
   // toggle between login and signup
   const [isLogin, setIsLogin] = useState(true);
 
-  const { login } = AuthContext; // access to this AuthContext
+  const authContext = useContext(AuthContext); // access to this AuthContext
 
   const emailEl = useRef(null);
   const pwEl = useRef(null);
@@ -76,7 +76,7 @@ const AuthPage = () => {
       .then((resData) => {
         // if login will have token if(isLogin)
         if (resData.data.login.token) {
-          login(
+          authContext.login(
             resData.data.login.token,
             resData.data.login.userId,
             resData.data.login.tokenExpiration

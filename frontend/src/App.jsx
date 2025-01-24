@@ -39,10 +39,22 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route index element={<Navigate to="/auth" replace />} />
-        <Route path="/auth" element={<AuthPage />} />
+        {/* Auth route should be available only if user is not logged in */}
+        {!auth.token && <Route path="/auth" element={<AuthPage />} />}
+
+        {/* Redirect to /events if logged in */}
+        {auth.token && <Route path="/" element={<Navigate to="/events" />} />}
+
+        {/* Redirect /auth to /events if logged in */}
+        {auth.token && (
+          <Route path="/auth" element={<Navigate to="/events" />} />
+        )}
+
+        {/* Events page is always available */}
         <Route path="/events" element={<EventsPage />} />
-        <Route path="/bookings" element={<BookingsPage />} />
+
+        {/* Bookings page is available only if logged in */}
+        {auth.token && <Route path="/bookings" element={<BookingsPage />} />}
       </Route>
     )
   );
