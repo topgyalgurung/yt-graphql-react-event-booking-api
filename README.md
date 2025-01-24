@@ -6,6 +6,20 @@ Learn how to build a GraphQL API (with Node.js) and a React.js frontend from scr
 # Usage
 Choose the right branch in this repository to get the code for the different parts of the series.
 
+Steps if starting from beginning:
+- store mongodb credentials in nodemon.json
+
+- npm init 
+- npm install express --save body-parser
+- npm install --save-dev nodemon
+- add "start": "nodemon app.js" in scripts package.json
+- npm install graphql@15.3.0 express-graphql 
+  - graphql latest not compatible with express-graphql 
+  - express-graphql no longer maintained instead use graphql-http
+  - install ruru package which bundles ruru module, add code to serve graphiql ide in server.js and restart server
+  - install: bcryptjs 
+  - install: jsonwebtoken 
+
 Install all dependencies
 ```sh
 npm install
