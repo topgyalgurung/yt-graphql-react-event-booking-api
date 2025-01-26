@@ -29,3 +29,9 @@ Run the server
 ```sh
 npm start
 ```
+
+NOTE: 
+- #16. CREATE EVENT AFTER SUBMISSION DOES NOT GET UPDATED TO DB
+  - GraphQL Response: {errors: Array(1), data: null}
+Events.jsx:130 TypeError: Cannot read properties of null (reading 'events')
+    at Events.jsx:127:32

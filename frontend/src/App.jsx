@@ -29,7 +29,8 @@ const RootLayout = () => {
 
 const App = () => {
   const [auth, setAuth] = useState({ token: null, userId: null });
-  const login = (token, userId) => {
+
+  const login = (token, userId, tokenExpiration) => {
     setAuth({ token, userId });
   };
 
@@ -62,7 +63,9 @@ const App = () => {
     )
   );
   return (
-    <AuthContext.Provider value={{ ...auth, login, logout }}>
+    <AuthContext.Provider
+      value={{ token: auth.token, userId: auth.userId, login, logout }}
+    >
       <RouterProvider router={router} />
     </AuthContext.Provider>
   );

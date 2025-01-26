@@ -6,6 +6,7 @@ const AuthPage = () => {
   // two way binding: manage state and bind the values of input to that state and listen to
   // the change event on that
   // or use refs references
+
   /** old way class based  */
   /*constructor(props){
     super(props);

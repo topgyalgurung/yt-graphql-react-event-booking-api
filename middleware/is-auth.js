@@ -1,14 +1,12 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
-  // Authorization: Bearer afkadg(token value)
-  const authHeader = req.get("authorization"); //  = Bearer afkadg(token value)
+  const authHeader = req.get("Authorization");
   if (!authHeader) {
     req.isAuth = false;
     return next();
   }
-
-  const token = authHeader.split("")[1]; //Bearer afkadg- get token val
+  const token = authHeader.split(" ")[1];
   if (!token || token === "") {
     req.isAuth = false;
     return next();
@@ -16,7 +14,7 @@ module.exports = (req, res, next) => {
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, "somesupersecretkey");
-  } catch (error) {
+  } catch (err) {
     req.isAuth = false;
     return next();
   }
@@ -25,6 +23,6 @@ module.exports = (req, res, next) => {
     return next();
   }
   req.isAuth = true;
-  req.userId = decodedToken;
+  req.userId = decodedToken.userId;
   next();
 };

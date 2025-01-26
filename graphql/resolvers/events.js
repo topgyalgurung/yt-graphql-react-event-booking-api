@@ -29,6 +29,7 @@ module.exports = {
       // mongoose will automatically convert string to object id
       creator: "5c0fbd06c816781c518e4f3e",
     });
+    console.log(event);
     let createdEvent;
     try {
       const result = await event.save();
